@@ -1,3 +1,10 @@
+<?php
+    if(isset($_GET['minas'])){
+        $minas=intval($_GET['minas'])<25?25:(intval($_GET['minas'])>130?130:intval($_GET['minas']));
+    }else{
+        $minas=25;
+    }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,22 +20,23 @@
     <script>
         var tabuleiro=new Array;
         $('document').ready(function (){
-           inicia(tabuleiro);
+           inicia(tabuleiro,<?php echo $minas?>);
            mostra(tabuleiro);
         });
     </script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<h1>Minesweeper</h1>
-
+<p id="debug"></p>
+<h1>Minesweeper (<?php echo $minas?>)</h1>
+<span class="btn btn-primary" id="btn">Aqui</span>
 <div class="container">
     <div id="tabuleiroHtml">
         <?php
             for($i=0;$i<140;$i++){
 
                 $class=($i+intval($i/10))%2?"escuro":"claro";
-                echo "<div class=\"$class box\"  id=\"dv$i\"></div>\n";
+                echo "<div onclick=\"abre($i,tabuleiro)\" class=\"$class box\"  id=\"dv$i\"></div>\n";
             }
         ?>
     </div>
