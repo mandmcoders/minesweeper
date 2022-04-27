@@ -7,6 +7,7 @@
     float: left;
     font-size: 18px;
     text-align: center;
+
 }
 .claro{
     background-color: #0ac876;
@@ -16,4 +17,7 @@
 }
 .escuro:hover,.claro:hover {
     opacity: 0.6;
+}
+.nova{
+    background-color: red !important;
 }

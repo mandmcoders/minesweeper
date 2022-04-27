@@ -1,8 +1,8 @@
 <?php
     if(isset($_GET['minas'])){
-        $minas=intval($_GET['minas'])<25?25:(intval($_GET['minas'])>130?130:intval($_GET['minas']));
+        $minas=intval($_GET['minas'])<10?10:(intval($_GET['minas'])>130?130:intval($_GET['minas']));
     }else{
-        $minas=25;
+        $minas=10;
     }
 ?>
 <!doctype html>

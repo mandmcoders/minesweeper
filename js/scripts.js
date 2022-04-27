@@ -1,5 +1,5 @@
 const MINA=-99;
-
+const ZERO=-88;
 
 
 
@@ -52,6 +52,7 @@ function inicia(tabuleiro,minas){
 function mostra1Mina(i) {
     $('#dv'+i).html('@');
 }
+
 function mostraMina(tabuleiro,i) {
     if(i<140){
         if (tabuleiro[i] == MINA) {
@@ -64,14 +65,10 @@ function mostraMina(tabuleiro,i) {
 }
 
 
-
-
-
-
 function mostra(tabuleiro){
     let res=' ';
     for(i=0;i<=139;i++) {
-        if (tabuleiro[i] == MINA)
+        if (tabuleiro[i] == MINA || tabuleiro[i]==ZERO)
             res = ' ';
         else
             if(tabuleiro[i]<0)
@@ -81,19 +78,52 @@ function mostra(tabuleiro){
         $('#dv' + i).html(res);
     }
 }
+function recursividade(i, tabuleiro){
+    tabuleiro[i]=ZERO;
+    let linha=parseInt(i/10);
+    let coluna=i%10;
+    lIni=linha==0?0:linha-1;
+    lFin=linha==13?13:linha+1;
+    cIni=coluna==0?0:coluna-1;
+    cFin=coluna==9?9:coluna+1;
+    numMinas=0;
+    for(k=lIni;k<=lFin;k++){
+        for(j=cIni;j<=cFin;j++){
+            let pos=k*10+j;
+            $('#dv'+pos).addClass('nova');
+            if(tabuleiro[pos]==0){
+                setTimeout(function (){recursividade(pos,tabuleiro);}, 200);
+            }else{
+                if(tabuleiro[pos]>0)
+                    tabuleiro[pos]*=-1;
+            }
+
+
+
+
+        }
+    }
+    mostra(tabuleiro);
+}
 
 function abre(i,tabuleiro){
-
+    $('#dv'+i).addClass('nova');
     if (tabuleiro[i] == MINA) {
         mostraMina(tabuleiro,0);
         //alert('BUMMM');
     }
     else
-        if(tabuleiro[i]<0) {
+        if(tabuleiro[i]<0) { // a carregar numa posição que já existe
             return 0;
         }else{
-            tabuleiro[i]*=-1;
-            mostra(tabuleiro);
+            if(tabuleiro[i]==0){
+                recursividade(i,tabuleiro);
+                tabuleiro[i]=ZERO;
+            }else{
+                tabuleiro[i]*=-1;
+                mostra(tabuleiro);
+            }
+
         }
 
 }
