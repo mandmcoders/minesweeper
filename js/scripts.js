@@ -2,7 +2,6 @@ const MINA=-99;
 const ZERO=-88;
 
 
-
 function geraMinas(tabuleiro,num){
    let len=tabuleiro.length;
     for(i=1;i<=num;i++){
@@ -126,4 +125,8 @@ function abre(i,tabuleiro){
 
         }
 
+}
+
+function bandeira(el){
+    $('#'+ el ).addClass('bandeira');
 }

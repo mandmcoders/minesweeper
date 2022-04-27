@@ -20,7 +20,9 @@
     <script>
         var tabuleiro=new Array;
         $('document').ready(function (){
-           inicia(tabuleiro,<?php echo $minas?>);
+
+
+            inicia(tabuleiro,<?php echo $minas?>);
            mostra(tabuleiro);
         });
     </script>
@@ -36,7 +38,7 @@
             for($i=0;$i<140;$i++){
 
                 $class=($i+intval($i/10))%2?"escuro":"claro";
-                echo "<div onclick=\"abre($i,tabuleiro)\" class=\"$class box\"  id=\"dv$i\"></div>\n";
+                echo "<div oncontextmenu=\"javascript:bandeira(this.id);return false;\" onclick=\"abre($i,tabuleiro)\" class=\"$class box\"  id=\"dv$i\"></div>\n";
             }
         ?>
     </div>

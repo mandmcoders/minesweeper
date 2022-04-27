@@ -21,3 +21,7 @@
 .nova{
     background-color: red !important;
 }
+.bandeira{
+    background-image: url("../bandeira.png");
+    background-size: 100%;
+}
